@@ -23,4 +23,6 @@ FLEX
 
 **Ссылка на GitHub**
 
+https://nurgaleevadi.github.io/mesto/
+
 
