@@ -1,0 +1,21 @@
+.profile-popup__input-specialty{
+  min-height: 27px;
+  width: 358px;
+  padding: 0;
+  padding-top: 30px; 
+  margin-left: 36px;
+  min-height: 27px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 580px){
+  .profile-popup__input-specialty{
+    width: 238px;
+    margin: 0 auto;
+  }
+}

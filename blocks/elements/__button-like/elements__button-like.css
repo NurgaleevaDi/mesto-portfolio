@@ -1,0 +1,11 @@
+.elements__button-like{
+   padding: 0;
+   padding-right: 15px;
+   border: none;
+   background-color: white;
+   background-position: center;
+   cursor: pointer;
+}
+.elements__button-like:hover{
+  opacity: 0.5;
+}
