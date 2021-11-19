@@ -2,7 +2,7 @@
   margin: 0;
   padding-top: 34px;
   padding-left: 36px;
-  padding-bottom: 28px;
+  padding-bottom: 24px;
   font-family: Inter;
   font-style: normal;
   font-weight: 900;
@@ -14,7 +14,7 @@
   .profile-popup__input-title{
     padding-top: 25px;
     padding-left: 22px;
-    padding-bottom: 0px;
+    padding-bottom: 45px;
     font-size: 18px;
   }
 }

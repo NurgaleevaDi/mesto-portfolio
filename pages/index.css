@@ -14,17 +14,18 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__content/profile__content.css);
+
 @import url(../blocks/profile/__info/profile__info.css);
 
 @import url(../blocks/profile-popup/profile-popup.css);
 @import url(../blocks/profile-popup/__button/profile-popup__button.css);
 @import url(../blocks/profile-popup/__content/profile-popup__content.css);
 @import url(../blocks/profile-popup/__input-button/profile-popup__input-button.css);
-@import url(../blocks/profile-popup/__input-name/profile-popup__input-name.css);
+@import url(../blocks/profile-popup/__input-text/profile-popup__input-text.css);
 @import url(../blocks/profile-popup/__input-specialty/profile-popup__input-specialty.css);
 @import url(../blocks/profile-popup/__input-title/profile-popup__input-title.css);
 @import url(../blocks/profile-popup/__input/profile-popup__input.css);
+@import url(../blocks/profile-popup/_opened/profile-popup_opened.css);
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__describe/elements__describe.css);

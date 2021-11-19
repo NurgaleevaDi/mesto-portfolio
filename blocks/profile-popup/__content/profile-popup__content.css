@@ -1,6 +1,5 @@
 .profile-popup__content{
-  margin: 0 auto;
-  margin-top: 195px;
+  /* margin: 0 auto; */
   max-width:470px;
   display: grid;
   grid-template-areas: 

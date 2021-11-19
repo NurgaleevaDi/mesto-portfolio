@@ -1,4 +1,5 @@
 .profile-popup__input{
+  margin: 0 auto;
   width: 430px;
   min-height: 330px;
   background-color:white;
