@@ -7,7 +7,7 @@
   align-self: center;
   justify-self: end;
   cursor: pointer;
-  border: 2px solid #FFFFFF
+  border: 2px solid #FFFFFF;
 }
 .profile__add-button:hover{
   opacity: 0.6;
