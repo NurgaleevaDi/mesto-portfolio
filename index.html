@@ -12,90 +12,92 @@
     <header class="header section page__header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип Место Россия"/>       
     </header>
-    <div class="profile">
-      <img class="profile__image" src="./images/custo.jpg" alt="Изображение Жака Кусто"/>
-      <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button">
-          <img src="./images/edit.svg" alt="Кнопка - редактирование"/>
+    <main class="page__content">
+      <div class="profile">
+        <img class="profile__image" src="./images/custo.jpg" alt="Изображение Жака Кусто"/>
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" type="button">
+            <img src="./images/edit.svg" alt="Кнопка - редактирование"/>
+          </button>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button" type="button">
+          <img src="./images/add.svg" alt="Кнопка - добавить"/>
         </button>
-        <p class="profile__subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button">
-        <img src="./images/add.svg" alt="Кнопка - добавить"/>
-      </button>
-    </div>
-    <div class="profile-popup">
-      <div class="profile-popup__content">  
-        <button class="profile-popup__button">
+      <div class="profile-popup">
+        <div class="profile-popup__content">  
+          <button class="profile-popup__button" type="button">
           <!-- <img src="./images/close.svg" alt="Кнопка - закрыть"/>  -->
-        </button>
-        <form class="profile-popup__input" name="popup__input">
-          <h2 class="profile-popup__input-title">Редактировать профиль</h2>
-          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_name" name="popup-name"> 
-          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_specialty" name="popup-specialty">
-          <button type="submit" class="profile-popup__input-button">
-            Сохранить
           </button>
-        </form>
-      </div> 
-    </div>
-    <section class="elements">
-      <article class="elements__item">
-        <img class="elements__image" src="./images/karachaevsk.jpg" alt="Изображение старой крепости"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Карачаевск</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-          </button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img class="elements__image" src="./images/mosc.jpg" alt="Изображение здания Москва-сити"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Москва</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-          </button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img class="elements__image" src="./images/nnovgorod.jpg" alt="Изображение Нижнего Новгорода"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Нижний Новгород</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-          </button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img class="elements__image" src="./images/elbr.jpg" alt="Изображение заснежженные горы Эльбруса"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Эльбрус</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-          </button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img class="elements__image" src="./images/sochi.jpg" alt="Изображение галька на побережье"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Сочи</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-          </button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img class="elements__image" src="./images/kab-balk.jpg" alt="Изображение горный водопад"/>
-        <div class="elements__describe">
-          <h3 class="elements__name">Кабардино-Черкессия</h3>
-          <button class="elements__button-like">
-            <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-          </button>
-        </div>
-      </article>
-    </section>
+          <form class="profile-popup__input" name="popup__input">
+            <h2 class="profile-popup__input-title">Редактировать профиль</h2>
+            <input type="text" class="profile-popup__input-text profile-popup__input-text_type_name" name="popup-name"> 
+            <input type="text" class="profile-popup__input-text profile-popup__input-text_type_specialty" name="popup-specialty">
+            <button type="submit" class="profile-popup__input-button">
+              Сохранить
+            </button>
+          </form>
+        </div> 
+      </div>
+      <section class="elements">
+        <article class="elements__item">
+          <img class="elements__image" src="./images/karachaevsk.jpg" alt="Изображение старой крепости"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Карачаевск</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
+            </button>
+          </div>
+        </article>
+        <article class="elements__item">
+          <img class="elements__image" src="./images/mosc.jpg" alt="Изображение здания Москва-сити"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Москва</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
+            </button>
+          </div>
+        </article>
+        <article class="elements__item">
+          <img class="elements__image" src="./images/nnovgorod.jpg" alt="Изображение Нижнего Новгорода"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Нижний Новгород</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
+            </button>
+          </div>
+        </article>
+        <article class="elements__item">
+          <img class="elements__image" src="./images/elbr.jpg" alt="Изображение заснежженные горы Эльбруса"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Эльбрус</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
+            </button>
+          </div>
+        </article>
+        <article class="elements__item">
+          <img class="elements__image" src="./images/sochi.jpg" alt="Изображение галька на побережье"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Сочи</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
+            </button>
+          </div>
+        </article>
+        <article class="elements__item">
+          <img class="elements__image" src="./images/kab-balk.jpg" alt="Изображение горный водопад"/>
+          <div class="elements__describe">
+            <h3 class="elements__name">Кабардино-Черкессия</h3>
+            <button class="elements__button-like" type="button">
+              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
     <footer class="footer">
       <p class="footer__copyright">
         &copy; 2021 Mesto Russia
