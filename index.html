@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css">
+    <script src="./scripts/index.js" defer></script>
 </head>
 <body class="page">
   <div class="page__container">
@@ -27,60 +28,6 @@
         </button>
       </div>
       <section class="elements">
-        <article class="elements__item">
-          <img class="elements__image" src="./images/karachaevsk.jpg" alt="Изображение старой крепости"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Карачаевск</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-            </button>
-          </div>
-        </article>
-        <article class="elements__item">
-          <img class="elements__image" src="./images/mosc.jpg" alt="Изображение здания Москва-сити"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Москва</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-            </button>
-          </div>
-        </article>
-        <article class="elements__item">
-          <img class="elements__image" src="./images/nnovgorod.jpg" alt="Изображение Нижнего Новгорода"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Нижний Новгород</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-            </button>
-          </div>
-        </article>
-        <article class="elements__item">
-          <img class="elements__image" src="./images/elbr.jpg" alt="Изображение заснежженные горы Эльбруса"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Эльбрус</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-            </button>
-          </div>
-        </article>
-        <article class="elements__item">
-          <img class="elements__image" src="./images/sochi.jpg" alt="Изображение галька на побережье"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Сочи</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/> 
-            </button>
-          </div>
-        </article>
-        <article class="elements__item">
-          <img class="elements__image" src="./images/kab-balk.jpg" alt="Изображение горный водопад"/>
-          <div class="elements__describe">
-            <h3 class="elements__name">Кабардино-Черкессия</h3>
-            <button class="elements__button-like" type="button">
-              <img src="./images/like.svg" alt="Кнопка-сердечко"/>
-            </button>
-          </div>
-        </article>
       </section>
     </main>
     <footer class="footer">
@@ -102,7 +49,41 @@
         </form>
       </div> 
     </div>
+    <div class="card-popup profile-popup">
+      <div class="profile-popup__content">  
+        <button class="profile-popup__button profile-popup__button_card" type="button">
+        </button>
+        <form class="profile-popup__input profile-popup__input_newEl" name="popup__input">
+          <h2 class="profile-popup__input-title">Новое место</h2>
+          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_title" name="popup-title"> 
+          <input type="url" class="profile-popup__input-text profile-popup__input-text_type_image" name="popup-image">
+          <button type="submit" class="profile-popup__input-button profile-popup__input-button_card">
+            Создать
+          </button>
+        </form>
+      </div> 
+    </div>
+    <div class="popup-image">
+      <div class="popup-image__content">
+        <button class="popup-image__button" type="button">
+        </button>
+        <img class="popup-image__image" src="#" alt="Изображение"/>
+        <p class="popup-image__title"></p>
+      </div>  
+    </div>
   </div>
-<script src="./scripts/index.js"></script>
+<template class="template">
+  <article class="elements__item">
+    <button class="elements__button-delete" type="button">
+      <img src="./images/trash.svg" alt="Удалить"/>
+    </button>
+    <img class="elements__image"/>
+    <div class="elements__describe">
+      <h3 class="elements__name"></h3>
+      <button class="elements__button-like" type="button">
+      </button>
+    </div>
+  </article>
+</template>
 </body>
 </html>

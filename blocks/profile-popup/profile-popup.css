@@ -1,4 +1,6 @@
 .profile-popup{
+ 
+
   position: fixed;
   top: 0;
   bottom: 0;
@@ -7,5 +9,9 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, .5);
-  display: none;
+
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
