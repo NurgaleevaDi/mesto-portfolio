@@ -5,7 +5,7 @@
   grid-template-areas: 
     "a b"
     "c d";
-  row-gap: 8px;  
+  row-gap: 8px;
   z-index: 10;
 }
 @media screen and (max-width: 580px){
