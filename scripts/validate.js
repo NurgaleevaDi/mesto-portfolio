@@ -4,19 +4,16 @@ const showError = (form, input, errorMessageText, errorMessageClass, inputErrorC
   errorMessage.classList.add(errorMessageClass);
   input.classList.add(inputErrorClass);
 }
-
 const hideError = (form, input, errorMessageClass, inputErrorClass) => {
   const errorMessage = form.querySelector(`#${input.id}-error`);
   errorMessage.textContent = '';
   errorMessage.classList.remove(errorMessageClass);
   input.classList.remove(inputErrorClass);
 }
-
 const hasInvalidInput = (inputs) =>{
   return Array.from(inputs).some((el) => !el.validity.valid);
 }
 const toggleButtonError = (inputs, button, inactiveButtonClass) => {
-  
   if (hasInvalidInput(inputs)) {
     button.classList.add(inactiveButtonClass);
     button.disabled = true;
@@ -25,7 +22,6 @@ const toggleButtonError = (inputs, button, inactiveButtonClass) => {
     button.disabled = false;
   }
 }
-
 const checkIfInputValid = (form, input, {inputErrorClass, errorClass}) => {
   if (!input.validity.valid){
     showError(form, input, input.validationMessage, errorClass, inputErrorClass);
@@ -34,8 +30,6 @@ const checkIfInputValid = (form, input, {inputErrorClass, errorClass}) => {
     hideError(form, input, errorClass, inputErrorClass);
   }
 }
-
-
 const setInputListeners = (form, {inputSelector, submitButtonSelector, inactiveButtonClass, ...rest}) =>{
   const inputs = form.querySelectorAll(inputSelector);
   const submitButton = form.querySelector(submitButtonSelector);
@@ -44,34 +38,19 @@ const setInputListeners = (form, {inputSelector, submitButtonSelector, inactiveB
     input.addEventListener('input', () => {
     checkIfInputValid(form, input, rest);
     toggleButtonError(inputs, submitButton, inactiveButtonClass)
-
     });
   });
-
 }
-
-
-
-
 const enableValidation = ({formSelector, ...rest}) => {
   const forms = document.querySelectorAll(formSelector);
-
   forms.forEach((form) => {
-      form.addEventListener('submit', (event) =>{
-          event.preventDefault();
+    form.addEventListener('submit', (event) =>{
+      event.preventDefault();
          
-      });
-
-      
-      setInputListeners(form, rest);
+    });
+    setInputListeners(form, rest);
   })
-
-
-
 }
-
-
-
 enableValidation({
     formSelector: '.profile-popup__input',
     inputSelector: '.profile-popup__input-text',
