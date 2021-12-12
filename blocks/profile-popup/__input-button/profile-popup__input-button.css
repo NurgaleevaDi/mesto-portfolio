@@ -32,5 +32,10 @@
     line-height: 1.21;
   } 
 }
-
+.profile-popup__input-button.profile-popup__input-button_disabled {
+  background-color: white;
+  color: #000000;
+  opacity: 0.2;
+  border: 1px solid #000000;
+}
 

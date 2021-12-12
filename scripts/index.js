@@ -1,13 +1,16 @@
 const editBtn = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.profile-popup');
 const popupCloseButton = document.querySelector('.profile-popup__button');
+const popupOverlay = document.querySelector('.popup-overlay');
 
 const addBtn = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.card-popup');
 const popupCloseButtonCard = document.querySelector('.profile-popup__button_card');
+const popupOverlayCard = document.querySelector('.popup-overlay-card');
 
 const popupImage = document.querySelector('.popup-image');
 const popupCloseButtonImage = document.querySelector('.popup-image__button');
+const popupOverlayImage = document.querySelector('.popup-overlay-image');
 
 const nameUser =  document.querySelector('.profile__title');
 const specialtyUser = document.querySelector ('.profile__subtitle');
@@ -15,8 +18,12 @@ const formElement = document.querySelector('.profile-popup__input');
 const nameInput = formElement.querySelector('.profile-popup__input-text_type_name');
 const specialtyInput = formElement.querySelector ('.profile-popup__input-text_type_specialty');
 
+// const popupInputBtnCard = document.querySelector('.profile-popup__input-button_card');
+
 function open(popup) {
   popup.classList.add('profile-popup_opened');
+  //   popupInputBtnCard.setAttribute('disabled', 'disabled');
+  //   popupInputBtnCard.add('profile-popup__input-button_disabled');
 }
 
 function close(popup) {
@@ -92,7 +99,6 @@ const newEl = document.querySelector('.profile-popup__input_newEl');
 const inputEl = newEl.querySelector('.profile-popup__input-text_type_title');
 const imageInput = newEl.querySelector('.profile-popup__input-text_type_image');
 
-
 function handleAdd(evt) {
   evt.preventDefault();
   
@@ -103,6 +109,7 @@ function handleAdd(evt) {
   close(popupCard);
   inputEl.value = '';
   imageInput.value = '';
+ 
 }  
 
 function handleDelete(evt) {
@@ -132,10 +139,20 @@ editBtn.addEventListener ('click', () => {
   nameInput.value = nameUser.textContent;
   specialtyInput.value = specialtyUser.textContent;
 });
+
+document.addEventListener('keydown', function(evt){
+  if (evt.key === 'Escape'){
+    document.querySelector('.profile-popup_opened').classList.remove('profile-popup_opened');
+  }
+});
+
 popupCloseButton.addEventListener('click', () => {close(popupEdit);});
 addBtn.addEventListener('click', () => {open(popupCard);});
 popupCloseButtonCard.addEventListener('click', () => {close(popupCard);});
 popupCloseButtonImage.addEventListener('click', () => {close(popupImage);});
-formElement.addEventListener("submit", formSubmitHandler);
+popupOverlay.addEventListener('click', () => {close(popupEdit)});
+popupOverlayCard.addEventListener('click', () => {close(popupCard)});
+popupOverlayImage.addEventListener('click', () => {close(popupImage)});
+formElement.addEventListener('submit', formSubmitHandler);
 newEl.addEventListener('submit', handleAdd);
 render();

@@ -17,14 +17,7 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__info/profile__info.css);
 
-@import url(../blocks/profile-popup/profile-popup.css);
-@import url(../blocks/profile-popup/__button/profile-popup__button.css);
-@import url(../blocks/profile-popup/__content/profile-popup__content.css);
-@import url(../blocks/profile-popup/__input-button/profile-popup__input-button.css);
-@import url(../blocks/profile-popup/__input-text/profile-popup__input-text.css);
-@import url(../blocks/profile-popup/__input-specialty/profile-popup__input-specialty.css);
-@import url(../blocks/profile-popup/__input-title/profile-popup__input-title.css);
-@import url(../blocks/profile-popup/__input/profile-popup__input.css);
+
 
 
 @import url(../blocks/elements/elements.css);
@@ -39,10 +32,22 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
+
+@import url(../blocks/profile-popup/profile-popup.css);
+@import url(../blocks/profile-popup/__button/profile-popup__button.css);
+@import url(../blocks/profile-popup/__content/profile-popup__content.css);
+@import url(../blocks/profile-popup/__input-button/profile-popup__input-button.css);
+@import url(../blocks/profile-popup/__input-text/profile-popup__input-text.css);
+@import url(../blocks/profile-popup/__input-specialty/profile-popup__input-specialty.css);
+@import url(../blocks/profile-popup/__input-title/profile-popup__input-title.css);
+@import url(../blocks/profile-popup/__input/profile-popup__input.css); 
+@import url(../blocks/error/error.css);
+
 @import url(../blocks/popup-image/popup-image.css);
 @import url(../blocks/popup-image/__image/popup-image__image.css);
 @import url(../blocks/popup-image/__button/popup-image__button.css);
 @import url(../blocks/popup-image/__content/popup-image__content.css);
 @import url(../blocks/popup-image/__title/popup-image__title.css);
+@import url(../blocks/popup-overlay/popup-overlay.css);
 
 @import url(../blocks/profile-popup/_opened/profile-popup_opened.css);

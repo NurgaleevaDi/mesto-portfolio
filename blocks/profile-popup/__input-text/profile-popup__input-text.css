@@ -19,3 +19,6 @@
     width:238px;
   }
 }
+.profile-popup__input-text.profile-popup__input-text_error{
+  border-bottom: 1px solid red;
+}
