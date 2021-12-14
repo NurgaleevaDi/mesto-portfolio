@@ -5,7 +5,7 @@ const popupCard = document.querySelector('.card-popup');
 const popupImage = document.querySelector('.popup-image');
 const nameUser =  document.querySelector('.profile__title');
 const specialtyUser = document.querySelector ('.profile__subtitle');
-const formElement = document.querySelector('.profile-popup__input');
+const formElement = document.querySelector('.popup__input');
 const nameInput = formElement.querySelector('.profile-popup__input-text_type_name');
 const specialtyInput = formElement.querySelector ('.profile-popup__input-text_type_specialty');
 const popupInputBtnCard = document.querySelector('.profile-popup__input-button_card');
@@ -99,7 +99,7 @@ function handleAdd(evt) {
   inputEl.value = '';
   imageInput.value = '';
   popupInputBtnCard.setAttribute('disabled', true);
-  popupInputBtnCard.classList.add('profile-popup__input-button_disabled');
+  popupInputBtnCard.classList.add('popup__input-button_disabled');
 }  
 
 function handleDelete(evt) {

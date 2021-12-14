@@ -38,17 +38,17 @@
     <div class="popup profile-popup">
       <div class="popup-overlay popup__close"></div>
       <div class="popup__content">  
-        <button class="profile-popup__button popup__close" type="button">
+        <button class="popup__button popup__close" type="button">
         </button>
-        <form class="profile-popup__input" name="popup__input">
-          <h2 class="profile-popup__input-title">Редактировать профиль</h2>
-          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_name" id="popup-name" name="popup-name" required
+        <form class="popup__input" name="popup__input">
+          <h2 class="popup__input-title">Редактировать профиль</h2>
+          <input type="text" class="popup__input-text profile-popup__input-text_type_name" id="popup-name" name="popup-name" required
             minlength="2" maxlength="40"> 
           <span id="popup-name-error" class="error"></span>
-          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_specialty" id="popup-specialty" name="popup-specialty" required
+          <input type="text" class="popup__input-text profile-popup__input-text_type_specialty" id="popup-specialty" name="popup-specialty" required
             minlength="2" maxlength="200">
           <span id="popup-specialty-error" class="error"></span>
-          <button type="submit" class="profile-popup__input-button">
+          <button type="submit" class="popup__input-button">
             Сохранить
           </button>
         </form>
@@ -57,16 +57,16 @@
     <div class="popup card-popup">
       <div class="popup-overlay popup-overlay-card popup__close"></div>
       <div class="popup__content">  
-        <button class="profile-popup__button profile-popup__button_card popup__close" type="button">
+        <button class="popup__button popup__button_card popup__close" type="button">
         </button>
-        <form class="profile-popup__input profile-popup__input_newEl" name="popup__input">
-          <h2 class="profile-popup__input-title">Новое место</h2>
-          <input type="text" class="profile-popup__input-text profile-popup__input-text_type_title" id="popup-title" name="popup-title" placeholder="Название" required
+        <form class="popup__input profile-popup__input_newEl" name="popup__input">
+          <h2 class="popup__input-title">Новое место</h2>
+          <input type="text" class="popup__input-text profile-popup__input-text_type_title" id="popup-title" name="popup-title" placeholder="Название" required
             minlength="2" maxlength="30"> 
           <span id="popup-title-error" class="error"></span>
-          <input type="url" class="profile-popup__input-text profile-popup__input-text_type_image" id="popup-image" name="popup-image" placeholder="Ссылка" required>
+          <input type="url" class="popup__input-text profile-popup__input-text_type_image" id="popup-image" name="popup-image" placeholder="Ссылка" required>
           <span id="popup-image-error" class="error"></span>
-          <button type="submit" class="profile-popup__input-button profile-popup__input-button_card">
+          <button type="submit" class="popup__input-button profile-popup__input-button_card">
             Создать
           </button>
         </form>

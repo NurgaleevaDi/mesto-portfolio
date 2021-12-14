@@ -1,0 +1,42 @@
+.popup__input-button{
+    padding: 0;
+    margin-top: 48px;
+    margin-left:36px;
+    margin-bottom: 37px;
+    width: 358px;
+    min-height: 50px;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.22;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: black;
+    box-shadow: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+  }
+  .popup__input-button:hover{
+    opacity: 0.8;
+  }
+  @media screen and (max-width: 580px){
+    .popup__input-button{
+      margin-top: 45px;
+      margin-left: 22px;
+      margin-bottom: 25px;
+      width: 238px;
+      min-height: 46px;
+      font-size: 14px;
+      line-height: 1.21;
+    } 
+  }
+  .popup__input-button.popup__input-button_disabled {
+    background-color: white;
+    color: #000000;
+    opacity: 0.2;
+    border: 1px solid #000000;
+  }
+  
+  

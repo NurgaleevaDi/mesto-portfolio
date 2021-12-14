@@ -52,10 +52,10 @@ const enableValidation = ({formSelector, ...rest}) => {
   })
 }
 enableValidation({
-    formSelector: '.profile-popup__input',
-    inputSelector: '.profile-popup__input-text',
-    submitButtonSelector: '.profile-popup__input-button',
-    inactiveButtonClass: 'profile-popup__input-button_disabled',
+    formSelector: '.popup__input',
+    inputSelector: '.popup__input-text',
+    submitButtonSelector: '.popup__input-button',
+    inactiveButtonClass: 'popup__input-button_disabled',
     inputErrorClass: 'profile-popup__input-text_error',
     errorClass: 'popup__error_visible'
   }); 
