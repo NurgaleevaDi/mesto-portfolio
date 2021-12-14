@@ -30,9 +30,10 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__content/popup__content.css);
 
 @import url(../blocks/profile-popup/__button/profile-popup__button.css);
-@import url(../blocks/profile-popup/__content/profile-popup__content.css);
+/* @import url(../blocks/profile-popup/__content/profile-popup__content.css); */
 @import url(../blocks/profile-popup/__input-button/profile-popup__input-button.css);
 @import url(../blocks/profile-popup/__input-text/profile-popup__input-text.css);
 @import url(../blocks/profile-popup/__input-specialty/profile-popup__input-specialty.css);
