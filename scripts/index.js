@@ -6,9 +6,9 @@ const popupImage = document.querySelector('.popup-image');
 const nameUser =  document.querySelector('.profile__title');
 const specialtyUser = document.querySelector ('.profile__subtitle');
 const formElement = document.querySelector('.popup__input');
-const nameInput = formElement.querySelector('.profile-popup__input-text_type_name');
-const specialtyInput = formElement.querySelector ('.profile-popup__input-text_type_specialty');
-const popupInputBtnCard = document.querySelector('.profile-popup__input-button_card');
+const nameInput = formElement.querySelector('.popup__input-text_type_name');
+const specialtyInput = formElement.querySelector ('.popup__input-text_type_specialty');
+const popupInputBtnCard = document.querySelector('.popup__input-button_card');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -85,9 +85,9 @@ function getItem(item) {
   return newItem;
   
 }       
-const newEl = document.querySelector('.profile-popup__input_newEl');
-const inputEl = newEl.querySelector('.profile-popup__input-text_type_title');
-const imageInput = newEl.querySelector('.profile-popup__input-text_type_image');
+const newEl = document.querySelector('.popup__input_newEl');
+const inputEl = newEl.querySelector('.popup__input-text_type_title');
+const imageInput = newEl.querySelector('.popup__input-text_type_image');
 
 function handleAdd(evt) {
   evt.preventDefault();
