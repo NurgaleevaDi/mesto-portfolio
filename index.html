@@ -35,10 +35,10 @@
         &copy; 2021 Mesto Russia
       </p>
     </footer>
-    <div class="profile-popup">
-      <div class="popup-overlay"></div>
+    <div class="popup profile-popup">
+      <div class="popup-overlay popup_close"></div>
       <div class="profile-popup__content">  
-        <button class="profile-popup__button" type="button">
+        <button class="popup_close profile-popup__button" type="button">
         </button>
         <form class="profile-popup__input" name="popup__input">
           <h2 class="profile-popup__input-title">Редактировать профиль</h2>
@@ -54,10 +54,10 @@
         </form>
       </div> 
     </div>
-    <div class="card-popup profile-popup">
-      <div class="popup-overlay popup-overlay-card"></div>
+    <div class="popup card-popup">
+      <div class="popup-overlay popup-overlay-card popup_close"></div>
       <div class="profile-popup__content">  
-        <button class="profile-popup__button profile-popup__button_card" type="button">
+        <button class="popup_close profile-popup__button profile-popup__button_card" type="button">
         </button>
         <form class="profile-popup__input profile-popup__input_newEl" name="popup__input">
           <h2 class="profile-popup__input-title">Новое место</h2>
@@ -66,16 +66,16 @@
           <span id="popup-title-error" class="error"></span>
           <input type="url" class="profile-popup__input-text profile-popup__input-text_type_image" id="popup-image" name="popup-image" placeholder="Ссылка" required>
           <span id="popup-image-error" class="error"></span>
-          <button type="submit" class="profile-popup__input-button profile-popup__input-button_card" disabled>
+          <button type="submit" class="profile-popup__input-button profile-popup__input-button_card">
             Создать
           </button>
         </form>
       </div> 
     </div>
-    <div class="popup-image profile-popup">
-      <div class="popup-overlay popup-overlay-image"></div>
+    <div class="popup popup-image">
+      <div class="popup-overlay popup-overlay-image popup_close"></div>
       <div class="popup-image__content">
-        <button class="popup-image__button" type="button">
+        <button class="popup_close popup-image__button" type="button">
         </button>
         <img class="popup-image__image" src="#" alt="Изображение"/>
         <p class="popup-image__title"></p>
