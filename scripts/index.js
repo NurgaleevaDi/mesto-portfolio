@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { openPopup, closePopup } from "./utils.js";
+
 const editBtn = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.profile-popup');
 const addBtn = document.querySelector('.profile__add-button');
@@ -9,23 +13,8 @@ const formElement = document.querySelector('.popup__input');
 const nameInput = formElement.querySelector('.popup__input-text_type_name');
 const specialtyInput = formElement.querySelector ('.popup__input-text_type_specialty');
 const popupInputBtnCard = document.querySelector('.popup__input-button_card');
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape); 
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape); 
-}
-
-function handleFormSubmit (evt) {
-  evt.preventDefault(); 
-    nameUser.textContent = nameInput.value;
-    specialtyUser.textContent = specialtyInput.value;
-  closePopup(popupEdit);
-}
+const containerEl = document.querySelector('.elements');
+const templateEl = document.querySelector('.template');
 
 const initialCards = [
   {
@@ -53,16 +42,12 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-// import {initialCards} from './cards.js'; не работает в Google Chrome
 
-const containerEl = document.querySelector('.elements');
-const templateEl = document.querySelector('.template');
-function render() {
-  const cards = initialCards
-    .map((item) => {
-      return getItem(item);
-  });
-  containerEl.append(...cards);
+function handleFormSubmit (evt) {
+  evt.preventDefault(); 
+    nameUser.textContent = nameInput.value;
+    specialtyUser.textContent = specialtyInput.value;
+  closePopup(popupEdit);
 }
 
 function getItem(item) {
@@ -111,7 +96,6 @@ function handleDelete(evt) {
 function handleLike(evt) {
   const targetEl = evt.target;
   targetEl.classList.toggle('elements__button-like_active');
-      //  .classListsetAttribute('disabled', true);
 }
       
 const popupImg = document.querySelector('.popup-image__image');
@@ -130,13 +114,6 @@ editBtn.addEventListener ('click', () => {
   specialtyInput.value = specialtyUser.textContent;
 });
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape'){
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
-      }
-}
-
 const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -152,4 +129,25 @@ popups.forEach((popup) => {
 addBtn.addEventListener('click', () => {openPopup(popupCard);});
 formElement.addEventListener('submit', handleFormSubmit);
 newEl.addEventListener('submit', handleAdd);
-render();
+
+initialCards.forEach((item) => {
+  const card = new Card('.template', item);
+  const cardElement = card.generateCard();
+  containerEl.append(cardElement);
+});   
+
+const enableValidation = ({formSelector, ...rest}) => {
+  const forms = document.querySelectorAll(formSelector);
+  forms.forEach((form) => {
+    const validityForm = new FormValidator (form, rest);
+    validityForm.enableValidation();
+  })
+  }
+  enableValidation({
+    formSelector: '.popup__input',
+    inputSelector: '.popup__input-text',
+    submitButtonSelector: '.popup__input-button',
+    inactiveButtonClass: 'popup__input-button_disabled',
+    inputErrorClass: 'profile-popup__input-text_error',
+    errorClass: 'popup__error_visible'
+  }); 
