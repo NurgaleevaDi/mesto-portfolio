@@ -1,6 +1,7 @@
 export const popupImage = document.querySelector('.popup-image');
 export const popupImg = document.querySelector('.popup-image__image');
 export const popupTitle = popupImage.querySelector('.popup-image__title');
+export const popupCard = document.querySelector('.card-popup');
 
 export function openPopup(popup) {
     popup.classList.add('popup_opened');

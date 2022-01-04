@@ -6,7 +6,6 @@ const editBtn = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.profile-popup');
 const addBtn = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.card-popup');
-const popupImage = document.querySelector('.popup-image');
 const nameUser =  document.querySelector('.profile__title');
 const specialtyUser = document.querySelector ('.profile__subtitle');
 const formElement = document.querySelector('.popup__input');
@@ -14,7 +13,9 @@ const nameInput = formElement.querySelector('.popup__input-text_type_name');
 const specialtyInput = formElement.querySelector ('.popup__input-text_type_specialty');
 const popupInputBtnCard = document.querySelector('.popup__input-button_card');
 const containerEl = document.querySelector('.elements');
-const templateEl = document.querySelector('.template');
+const newEl = document.querySelector('.popup__input_newEl');
+const inputEl = newEl.querySelector('.popup__input-text_type_title');
+const imageInput = newEl.querySelector('.popup__input-text_type_image');
 
 const initialCards = [
   {
@@ -49,63 +50,35 @@ function handleFormSubmit (evt) {
     specialtyUser.textContent = specialtyInput.value;
   closePopup(popupEdit);
 }
+     
 
-function getItem(item) {
-  const newItem = templateEl.content.cloneNode(true);
-  const imgEl = newItem.querySelector('.elements__image');
-  const headerEl = newItem.querySelector('.elements__name');
-  headerEl.textContent = item.name;
-  imgEl.src = item.link;
-  imgEl.alt = item.name;
-  
-  const removeBtn = newItem.querySelector('.elements__button-delete');
-  removeBtn.addEventListener('click', handleDelete);
 
-  const likeBtn = newItem.querySelector('.elements__button-like');
-  likeBtn.addEventListener('click', handleLike);
-
-  const imageCard = newItem.querySelector('.elements__image');
-  imageCard.addEventListener('click', () => handleOpenImage(item));
+const validatorConfig = {
+      inputSelector: '.popup__input-text',
+      submitButtonSelector: '.popup__input-button',
+      inactiveButtonClass: 'popup__input-button_disabled',
+      inputErrorClass: 'profile-popup__input-text_error',
+      errorClass: 'popup__error_visible'
+}
   
-  return newItem;
-  
-}       
-const newEl = document.querySelector('.popup__input_newEl');
-const inputEl = newEl.querySelector('.popup__input-text_type_title');
-const imageInput = newEl.querySelector('.popup__input-text_type_image');
+const addCardValidator = new FormValidator(newEl, validatorConfig);
+addCardValidator.enableValidation();
 
 function handleAdd(evt) {
   evt.preventDefault();
   const inputText = inputEl.value;
   const inputImg = imageInput.value;
-  const cardItem = getItem({name: inputText, link: inputImg});
-  containerEl.prepend(cardItem);
+  const card = new Card ('.template', {name: inputText, link: inputImg});
+  const cardElement = card.generateCard();
+  containerEl.prepend(cardElement);
+  
   closePopup(popupCard);
+  
   inputEl.value = '';
   imageInput.value = '';
   popupInputBtnCard.setAttribute('disabled', true);
-  popupInputBtnCard.classList.add('popup__input-button_disabled');
-}  
-
-function handleDelete(evt) {
-  const targetEl = evt.target;
-  const cardItem = targetEl.closest('.elements__item');
-  cardItem.remove(); 
-}
+  addCardValidator.toggleButtonError();
   
-function handleLike(evt) {
-  const targetEl = evt.target;
-  targetEl.classList.toggle('elements__button-like_active');
-}
-      
-const popupImg = document.querySelector('.popup-image__image');
-const popupTitle = popupImage.querySelector('.popup-image__title');
-       
-function handleOpenImage (item) {
-  popupImg.src = item.link;
-  popupImg.alt = item.name;
-  popupTitle.textContent = item.name;
-  openPopup(popupImage);
 }
 
 editBtn.addEventListener ('click', () => {
@@ -142,7 +115,7 @@ const enableValidation = ({formSelector, ...rest}) => {
     const validityForm = new FormValidator (form, rest);
     validityForm.enableValidation();
   })
-  }
+}
   enableValidation({
     formSelector: '.popup__input',
     inputSelector: '.popup__input-text',

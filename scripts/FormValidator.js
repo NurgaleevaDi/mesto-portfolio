@@ -1,13 +1,10 @@
 class FormValidator {
     constructor(form, config){
       this._form = form;
-      // console.log(this._form);
       this._inputSelector = config.inputSelector;
-      // console.log(this._inputSelector);
       this._submitButtonSelector = config.submitButtonSelector;
       this._inactiveButtonClass = config.inactiveButtonClass;
       this._inputErrorClass = config.inputErrorClass;
-      // console.log(this._inputErrorClass);
       this._errorClass = config.errorClass;
     }
 
@@ -29,7 +26,7 @@ class FormValidator {
       return Array.from(inputs).some((el) => !el.validity.valid);
   }
 
-    _toggleButtonError () {
+    toggleButtonError () {
         if (this._hasInvalidInput(this._inputs)) {
           this._submitButton.classList.add(this._inactiveButtonClass);
           this._submitButton.disabled = true;
@@ -39,7 +36,6 @@ class FormValidator {
         }
     }
     _checkIfInputValid(input) {
-       console.log(input);
         if (!input.validity.valid){
           this._showError(input, input.validationMessage);
         }
@@ -53,9 +49,8 @@ class FormValidator {
       this._submitButton = this._form.querySelector(this._submitButtonSelector);  
       this._inputs.forEach((input) => {
         input.addEventListener('input', () => {
-          console.log(input);
         this._checkIfInputValid(input);
-        this._toggleButtonError();
+        this.toggleButtonError();
         }); 
       });
     }
