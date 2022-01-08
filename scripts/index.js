@@ -11,11 +11,11 @@ const specialtyUser = document.querySelector ('.profile__subtitle');
 const formElement = document.querySelector('.popup__input');
 const nameInput = formElement.querySelector('.popup__input-text_type_name');
 const specialtyInput = formElement.querySelector ('.popup__input-text_type_specialty');
-const popupInputBtnCard = document.querySelector('.popup__input-button_card');
+// const popupInputBtnCard = document.querySelector('.popup__input-button_card');
 const containerEl = document.querySelector('.elements');
-const newEl = document.querySelector('.popup__input_newEl');
-const inputEl = newEl.querySelector('.popup__input-text_type_title');
-const imageInput = newEl.querySelector('.popup__input-text_type_image');
+const newCardFormElement = document.querySelector('.popup__input_newEl');
+const inputEl = newCardFormElement.querySelector('.popup__input-text_type_title');
+const imageInput = newCardFormElement.querySelector('.popup__input-text_type_image');
 
 const initialCards = [
   {
@@ -51,8 +51,6 @@ function handleFormSubmit (evt) {
   closePopup(popupEdit);
 }
      
-
-
 const validatorConfig = {
       inputSelector: '.popup__input-text',
       submitButtonSelector: '.popup__input-button',
@@ -61,24 +59,26 @@ const validatorConfig = {
       errorClass: 'popup__error_visible'
 }
   
-const addCardValidator = new FormValidator(newEl, validatorConfig);
+const addCardValidator = new FormValidator(newCardFormElement, validatorConfig);
 addCardValidator.enableValidation();
+const editProfileValidator = new FormValidator(formElement, validatorConfig);
+editProfileValidator.enableValidation();
+
+function createCard(item){
+  const card = new Card ('.template', item);
+  return card.generateCard();
+}
 
 function handleAdd(evt) {
   evt.preventDefault();
   const inputText = inputEl.value;
   const inputImg = imageInput.value;
-  const card = new Card ('.template', {name: inputText, link: inputImg});
-  const cardElement = card.generateCard();
-  containerEl.prepend(cardElement);
-  
+  containerEl.prepend(createCard({name: inputText, link: inputImg}));
   closePopup(popupCard);
   
   inputEl.value = '';
   imageInput.value = '';
-  popupInputBtnCard.setAttribute('disabled', true);
-  addCardValidator.toggleButtonError();
-  
+  addCardValidator.toggleButtonError(); 
 }
 
 editBtn.addEventListener ('click', () => {
@@ -101,26 +101,8 @@ popups.forEach((popup) => {
 
 addBtn.addEventListener('click', () => {openPopup(popupCard);});
 formElement.addEventListener('submit', handleFormSubmit);
-newEl.addEventListener('submit', handleAdd);
+newCardFormElement.addEventListener('submit', handleAdd);
 
 initialCards.forEach((item) => {
-  const card = new Card('.template', item);
-  const cardElement = card.generateCard();
-  containerEl.append(cardElement);
+  containerEl.append(createCard(item));
 });   
-
-const enableValidation = ({formSelector, ...rest}) => {
-  const forms = document.querySelectorAll(formSelector);
-  forms.forEach((form) => {
-    const validityForm = new FormValidator (form, rest);
-    validityForm.enableValidation();
-  })
-}
-  enableValidation({
-    formSelector: '.popup__input',
-    inputSelector: '.popup__input-text',
-    submitButtonSelector: '.popup__input-button',
-    inactiveButtonClass: 'popup__input-button_disabled',
-    inputErrorClass: 'profile-popup__input-text_error',
-    errorClass: 'popup__error_visible'
-  }); 
