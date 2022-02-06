@@ -1,5 +1,3 @@
-import { popupImg, popupTitle, popupImage, popupCard } from "./utils.js";
-
 class Card {
 // конструктор принимает данные карточки (имя, ссылку) и template ее элемента
   constructor(selector, data, handleCardClick){
