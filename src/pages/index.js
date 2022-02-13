@@ -5,6 +5,8 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import "./index.css";
 
 // const popupEdit = document.querySelector('.profile-popup');
@@ -20,6 +22,10 @@ import "./index.css";
 
 const editBtn = document.querySelector('.profile__edit-button');
 const addBtn = document.querySelector('.profile__add-button');
+
+// const deleteBtn = document.querySelector('.elements__button-delete');
+// console.log(deleteBtn);
+
 const formProfileElement = document.querySelector('.popup__input_profile');
 const nameInput = formProfileElement.querySelector('.popup__input-text_type_name');
 const specialtyInput = formProfileElement.querySelector ('.popup__input-text_type_specialty');
@@ -58,7 +64,12 @@ const validatorConfig = {
       inputErrorClass: 'profile-popup__input-text_error',
       errorClass: 'popup__error_visible'
 }
-  
+ 
+const api = new Api({
+  address: 'https://mesto.nomoreparties.co/v1/cohort-35',
+  token: '7b2f9279-45b3-4b51-8e23-d855b4f2907e'
+}); 
+
 const addCardValidator = new FormValidator(newCardFormElement, validatorConfig);
 addCardValidator.enableValidation();
 const editProfileValidator = new FormValidator(formProfileElement, validatorConfig);
@@ -76,28 +87,62 @@ function createCard(item) {
 }
 
 // секция с картинками
-const cardList = new Section ({items: initialCards, renderer: (item) => {
-  const cardElement = createCard(item);
-  cardList.addItem(cardElement);
-  }
-}, '.elements');
-cardList.renderItems();
+// const cardList = new Section ({items: initialCards, renderer: (item) => {
+//   const cardElement = createCard(item);
+//   cardList.addItem(cardElement);
+//   }
+// }, '.elements');
+// cardList.renderItems();
  
 
 addBtn.addEventListener('click', () => {
   addCard.openPopup();
 });
 
+
+
+// const addCard = new PopupWithForm({
+//   popupSelector: '.card-popup',
+//   handleFormSubmit: (formData) => {
+//     const cardElement = createCard(formData);
+//     cardList.addItem(cardElement);
+//     addCard.closePopup();
+//     addCardValidator.toggleButtonError(); 
+//     }
+//   });
+
 const addCard = new PopupWithForm({
   popupSelector: '.card-popup',
   handleFormSubmit: (formData) => {
-    const cardElement = createCard(formData);
-    cardList.addItem(cardElement);
+    api.addCard(formData.name, formData.link)
+    .then(() => {
+        const cardElement = createCard(formData);
+        cardList.addItem(cardElement);
+        
+    })
+    .catch (err => console.log(err));
+    
     addCard.closePopup();
-    addCardValidator.toggleButtonError(); 
+    addCardValidator.toggleButtonError();
+   
     }
+
   });
+
 addCard.setEventListeners();
+
+Promise.all([api.getUserData(), api.getCards()])
+.then(([data, cards]) => {
+  userInfo.setUserInfo(data);
+  const cardList = new Section ({items: cards, renderer: (item) => {
+    const cardElement = createCard(item);
+    cardList.addItem(cardElement);
+    }
+  }, '.elements');
+  cardList.renderItems();
+  })
+.catch (err => console.log(err));
+
 
 const userInfo = new UserInfo ({
   nameSelector: '.profile__title',
@@ -111,13 +156,37 @@ editBtn.addEventListener ('click', () => {
   specialtyInput.value = aboutUser.specialty 
 });
 
-const editProfile = new PopupWithForm ({
-  popupSelector: '.profile-popup',
-  handleFormSubmit: ({ name, specialty }) => {
-  userInfo.setUserInfo ({ name, specialty });
-  editProfile.closePopup(); 
-  } 
+// const editProfile = new PopupWithForm ({
+//   popupSelector: '.profile-popup',
+//   handleFormSubmit: ({ name, specialty }) => {
+//   userInfo.setUserInfo ({ name, specialty });
+//   editProfile.closePopup(); 
+//   } 
     
+// })
+const editProfile = new PopupWithForm({
+  popupSelector: '.profile-popup',
+  handleFormSubmit:(data) => {
+  api.profileEdit(data.name, data.specialty)
+  .then(() => {
+    console.log(data);
+    console.log(userInfo);
+    userInfo.setUserInfo (data);
+    editProfile.closePopup(); 
+  })
+  .catch((err) => {console.log(err)})
+  } 
 })
 editProfile.setEventListeners();
 
+const popupWithConfirm = new PopupWithConfirm({
+  popupSelector:'.confirm-popup'
+
+});
+
+console.log(popupWithConfirm);
+
+
+// deleteBtn.addEventListener('click', () => {
+//   popupWithConfirm.openPopup();
+// });

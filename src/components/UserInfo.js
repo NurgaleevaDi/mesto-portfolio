@@ -14,9 +14,17 @@ getUserInfo(){
     }
 }
 // setUserInfo принимает новые данные пользователя и добавляет их на страницу.
-setUserInfo({ name, specialty }){
-    this._nameElement.textContent = name;
-    this._specialtyElement.textContent = specialty;
+// setUserInfo({ name, specialty }){
+//     this._nameElement.textContent = name;
+//     this._specialtyElement.textContent = specialty;
+//     }
+// }
+
+setUserInfo(data){
+    this._nameElement.textContent = data['name'];
+    this._specialtyElement.textContent = data['about'];
     }
 }
+
+
 export default UserInfo;
