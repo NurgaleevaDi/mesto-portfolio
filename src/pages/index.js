@@ -63,14 +63,14 @@ function createCard(item) {
   () => {
     popupWithConfirm.openPopup(card);
   },
-  () =>{
+  () => {
     const likedCard = card.likedCard();
     const resultApi = likedCard ? api.dislikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
     resultApi.then(data => {
       card.setLikes(data.likes);
       card.renderLikes();
     })
-    .catch((err) =>{
+    .catch((err) => {
       console.log(err)
     })
   },
@@ -110,14 +110,11 @@ addCard.setEventListeners();
 
 Promise.all([api.getUserData(), api.getCards()])
 .then(([data, items]) => {
-  console.log(data);
   userInfo.setUserInfo(data);
-  cardList.renderItems(items.reverse());
   userId = data._id;
- 
+  cardList.renderItems(items.reverse());
   })
 .catch (err => console.log(err));
-
 
 const userInfo = new UserInfo ({
   nameSelector: '.profile__title',
@@ -129,18 +126,17 @@ editBtn.addEventListener ('click', () => {
   editProfile.openPopup();
   const aboutUser = userInfo.getUserInfo();
   nameInput.value = aboutUser.name;
-  specialtyInput.value = aboutUser.specialty 
+  specialtyInput.value = aboutUser.about
 });
 const editProfile = new PopupWithForm({
   popupSelector: '.profile-popup',
   handleFormSubmit:(data) => {
-    editProfile.rendererLoading(true);
-    console.log(data);
-  api.profileEdit(data.name, data.specialty)
-  .then(() => {
-    console.log(data);
     console.log(userInfo);
-    userInfo.setUserInfo(data);
+    editProfile.rendererLoading(true);
+    
+  api.profileEdit(data.name, data.about)
+  .then((res) => {
+    userInfo.setUserInfo(res);
     editProfile.closePopup(); 
   })
   .catch((err) => {console.log(err)})
@@ -158,9 +154,7 @@ const popupEditAvatar = new PopupWithForm({
     // console.log(`url('${profileAvatarInput.value}')`);
     console.log(`'input'${profileAvatarInput.value}`)
     api.editUserAvatar(profileAvatarInput.value)
-    
     .then((res) => {
-      // console.log(`'result'${res}`)
       userInfo.setUserInfo(res);
       popupEditAvatar.closePopup();
     })

@@ -13,13 +13,10 @@ class Card {
     // console.log(this._cardId);
     // this._userId = '8c331f0cb9e1ab92df7228f6';
     this._userId = userId;
-    
     this._ownerId = data.owner._id;
-    
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
     this._likeCardClick = likeCardClick;
-
   }
   _getTemplate(){
     return document.querySelector(this._selector)
@@ -66,7 +63,7 @@ class Card {
     this._elementImg.addEventListener('click', this._handleCardClick);
     this._handleLike.addEventListener('click', ()=>{
       this._likeCardClick(); //class
-      this._handleLikeCard(); //toggle
+      // this._handleLikeCard(); //toggle
     })
   }
 

@@ -8,11 +8,10 @@ class PopupWithForm extends Popup{
         this._form = document.querySelector('.popup__input_newEl');
         this._popupSubmitButton = this._popupElement.querySelector('.popup__input-button');
         this._submitButtonText = this._popupSubmitButton.textContent;
+        this._inputList = this._popupElement.querySelectorAll('.popup__input-text');// достаём все элементы полей
       }
     //приватный метод _getInputValues собирает данные всех полей формы
     _getInputValues() {
-        // достаём все элементы полей
-        this._inputList = this._popupElement.querySelectorAll('.popup__input-text');
         // создаём пустой объект
         this._formValues = {};
         // добавляем в этот объект значения всех полей

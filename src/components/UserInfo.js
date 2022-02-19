@@ -12,7 +12,7 @@ class UserInfo {
 getUserInfo(){
     return {
     name: this._nameElement.textContent,
-    specialty: this._specialtyElement.textContent,
+    about: this._specialtyElement.textContent,
     avatar: this._profileAvatar.src
     }
 }
@@ -24,13 +24,12 @@ getUserInfo(){
 // }
 
 setUserInfo(data){
-    console.log(data);
+    console.log(data.avatar);
+
     this._nameElement.textContent = data['name'];
    
     this._specialtyElement.textContent = data['about'];
-    // console.log(this._profileAvatar);
-    // console.log(data['avatar']);
-    // this._profileAvatar.style.backgroundImage = data['avatar'];
+   
     this._profileAvatar.src = data['avatar'];
     }
 }
