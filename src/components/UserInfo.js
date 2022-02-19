@@ -3,9 +3,9 @@
 class UserInfo {
     constructor({ nameSelector, specialtySelector, profileAvatar }){
         this._nameElement = document.querySelector(nameSelector);
+        // console.log(this._nameElement);
         this._specialtyElement = document.querySelector(specialtySelector);
         this._profileAvatar = document.querySelector(profileAvatar);
-       
     }
 // getUserInfo возвращает объект с данными пользователя. 
 // ддля того, чтобы подставить в форму при открытии
@@ -13,9 +13,8 @@ getUserInfo(){
     return {
     name: this._nameElement.textContent,
     specialty: this._specialtyElement.textContent,
-    avatar: this._profileAvatar.style.backgroundImage
+    avatar: this._profileAvatar.src
     }
-    console.log(this._profileAvatar);
 }
 // setUserInfo принимает новые данные пользователя и добавляет их на страницу.
 // setUserInfo({ name, specialty }){
@@ -25,8 +24,9 @@ getUserInfo(){
 // }
 
 setUserInfo(data){
+    console.log(data);
     this._nameElement.textContent = data['name'];
-    
+   
     this._specialtyElement.textContent = data['about'];
     // console.log(this._profileAvatar);
     // console.log(data['avatar']);

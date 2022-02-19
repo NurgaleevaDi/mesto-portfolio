@@ -1,6 +1,6 @@
 class Card {
 // конструктор принимает данные карточки (имя, ссылку) и template ее элемента
-  constructor(selector, data, handleCardClick, handleDeleteCard, likeCardClick){
+  constructor(selector, data, handleCardClick, handleDeleteCard, likeCardClick, userId){
     this._selector = selector;
     this._name = data.name;
     this._link = data.link;
@@ -11,7 +11,9 @@ class Card {
     // console.log(userId);
     this._cardId = data._id;
     // console.log(this._cardId);
-    this._userId = '8c331f0cb9e1ab92df7228f6';
+    // this._userId = '8c331f0cb9e1ab92df7228f6';
+    this._userId = userId;
+    
     this._ownerId = data.owner._id;
     
     this._handleCardClick = handleCardClick;
@@ -32,7 +34,6 @@ class Card {
 
   getIdCard() {
     return this._cardId;
-    
   }
   
 
@@ -42,10 +43,10 @@ class Card {
   }
   generateCard() {
     this._element = this._getTemplate(); 
-    const elementImg = this._element.querySelector('.elements__image');
+    this._elementImg = this._element.querySelector('.elements__image');
     this._element.querySelector('.elements__name').textContent = this._name;
-    elementImg.src = this._link;
-    elementImg.alt = this._name;
+    this._elementImg.src = this._link;
+    this._elementImg.alt = this._name;
     this._likes = this._element.querySelector('.elements__like-counter');
     this._trashCan = this._element.querySelector('.elements__button-delete');
     this._handleLike = this._element.querySelector('.elements__button-like');
@@ -53,20 +54,21 @@ class Card {
     if (this._ownerId !== this._userId) {
         this._trashCan.style.display = 'none';
     }
-       
     
+    this.renderLikes(); 
+    this._setEventListeners(); 
+    return this._element;
+  }
+
+  _setEventListeners(){
     this._element.querySelector('.elements__button-delete').addEventListener('click', this._handleDeleteCard);
     this._element.querySelector('.elements__button-like').addEventListener('click', this._handleLikeCard);
-    elementImg.addEventListener('click', this._handleCardClick);
+    this._elementImg.addEventListener('click', this._handleCardClick);
     this._handleLike.addEventListener('click', ()=>{
       this._likeCardClick(); //class
       this._handleLikeCard(); //toggle
     })
-    
-    this.renderLikes();  
-    return this._element;
   }
-
 
   renderLikes(){
     // console.log(this._likes);
@@ -92,6 +94,7 @@ class Card {
   
   _showLikes() {
     if (this.likedCard(this._userId)){
+      
       this._handleLike.classList.add('elements__button-like_active')
     } else {
       this._handleLike.classList.remove('elements__button-like_active')
