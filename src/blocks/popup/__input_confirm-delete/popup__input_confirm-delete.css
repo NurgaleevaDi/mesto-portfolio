@@ -1,4 +1,4 @@
-.popup__confirm-delete{
+.popup__input_confirm-delete{
     margin: 0 auto;
     width: 430px;
     min-height: 181px;
@@ -9,7 +9,7 @@
     flex-direction: column;
   }
   @media screen and (max-width: 580px){
-    .popup__confirm-delete{
+    .popup__input_confirm-delete{
       width: 282px;
     }
   }
