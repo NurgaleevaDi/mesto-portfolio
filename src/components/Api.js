@@ -55,6 +55,48 @@ class Api{
         }).then(this._handleResponse)
     }
 
+    deleteCard(cardId) {
+        return fetch (`${this._address}/cards/${cardId}`,{
+            method:'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        }).then(this._handleResponse)
+    
+    }
+
+    likeCard(cardId) { 
+        return fetch (`${this._address}/cards/likes/${cardId}`,{
+        method:'PUT',
+        headers: {
+            authorization: this._token,
+            'Content-Type': 'application/json'
+        }
+    }).then(this._handleResponse)
+    }
+    dislikeCard(cardId) { 
+        return fetch (`${this._address}/cards/likes/${cardId}`,{
+        method:'DELETE',
+        headers: {
+            authorization: this._token,
+            'Content-Type': 'application/json'
+        }
+    }).then(this._handleResponse)
+    }
+
+    editUserAvatar(url){
+        return fetch(`${this._address}/users/me/avatar`,{
+            method:'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                avatar: url
+            })
+        }).then(this._handleResponse)
+    }
 
 }
 export default Api;

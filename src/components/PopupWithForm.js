@@ -1,11 +1,13 @@
 import Popup from "./Popup.js";
 
 class PopupWithForm extends Popup{
-    constructor({ popupSelector, handleFormSubmit }){
+    constructor( {popupSelector, handleFormSubmit} ){
         super(popupSelector); // вызываем конструктор родителя
         this._popupSelector = popupSelector;
         this._handleFormSubmit = handleFormSubmit;
         this._form = document.querySelector('.popup__input_newEl');
+        this._popupSubmitButton = this._popupElement.querySelector('.popup__input-button');
+        this._submitButtonText = this._popupSubmitButton.textContent;
       }
     //приватный метод _getInputValues собирает данные всех полей формы
     _getInputValues() {
@@ -34,6 +36,14 @@ class PopupWithForm extends Popup{
     closePopup() {
         super.closePopup();
         this._form.reset(); 
+    }
+    rendererLoading(isLoading, loadingMessage='Сохранение...'){
+      if(isLoading){
+        this._popupSubmitButton.textContent = loadingMessage;
+      }
+      else {
+        this._popupSubmitButton.textContent = this._submitButtonText
+      }
     }
 }
 

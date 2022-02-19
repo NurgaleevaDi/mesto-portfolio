@@ -1,5 +1,42 @@
 .profile__image{
-  max-width: 120px;
-  max-height: 120px;
+  
+  position: relative;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  /* background-image: url('../../../images/custo.jpg');
+  background-size: contain; */
 }
+.profile__image-edit{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-repeat:no-repeat;
+  background-position: center;
+}
+.profile__image-edit:hover {
+  cursor: pointer;
+  background-image: url('../../../images/avatarEdit.svg');  
+}
+
+/* .profile__image::before{
+  content: '';
+  position: absolute;
+  background: (0,0,0,0);
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+
+} 
+.profile__image:hover::before{
+  cursor: pointer;
+  opacity: 0.8;
+  background-image: url('../../../images/avatarEdit.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+ } */

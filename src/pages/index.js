@@ -30,32 +30,34 @@ const formProfileElement = document.querySelector('.popup__input_profile');
 const nameInput = formProfileElement.querySelector('.popup__input-text_type_name');
 const specialtyInput = formProfileElement.querySelector ('.popup__input-text_type_specialty');
 const newCardFormElement = document.querySelector('.popup__input_newEl');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+const profileAvatarInput = document.querySelector('.popup__input-text_type_avatarUrl');
+const editAvatarButton = document.querySelector('.profile__image-edit');
+// const initialCards = [
+//   {
+//     name: 'Архыз',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//   },
+//   {
+//     name: 'Челябинская область',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+//   },
+//   {
+//     name: 'Иваново',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+//   },
+//   {
+//     name: 'Камчатка',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+//   },
+//   {
+//     name: 'Холмогорский район',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+//   },
+//   {
+//     name: 'Байкал',
+//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//   }
+// ];
 
 const validatorConfig = {
       inputSelector: '.popup__input-text',
@@ -78,75 +80,92 @@ editProfileValidator.enableValidation();
 const imageViewer = new PopupWithImage('.popup-image'); // экземпляр открытия попапа с большой картинкой
 imageViewer.setEventListeners();
 
+const popupWithConfirm = new PopupWithConfirm({
+  popupSelector:'.confirm-popup',
+  handleFormSubmit: (evt, card) => {
+   deleteConfirm (evt, card)
+  }
+});
+
+
+popupWithConfirm.setEventListeners();
+const deleteConfirm = (evt, newCard) => {
+  evt.preventDefault();
+  console.log(newCard.getIdCard());
+  api.deleteCard(newCard.getIdCard())
+  .then(() => {
+    newCard.removeCard()
+    popupWithConfirm.closePopup()
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
 function createCard(item) {
   const card = new Card ('.template', item, () => {
     const {name, link} = item;
     imageViewer.openPopup ({name, link})
+  },
+  () => {
+    popupWithConfirm.openPopup(card);
+  },
+  () =>{
+    const likedCard = card.likedCard();
+    const resultApi = likedCard ? api.dislikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
+    resultApi.then(data => {
+      card.setLikes(data.likes);
+      card.renderLikes();
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
   });
   return card.generateCard();
 }
-
-// секция с картинками
-// const cardList = new Section ({items: initialCards, renderer: (item) => {
-//   const cardElement = createCard(item);
-//   cardList.addItem(cardElement);
-//   }
-// }, '.elements');
-// cardList.renderItems();
  
-
 addBtn.addEventListener('click', () => {
   addCard.openPopup();
 });
 
-
-
-// const addCard = new PopupWithForm({
-//   popupSelector: '.card-popup',
-//   handleFormSubmit: (formData) => {
-//     const cardElement = createCard(formData);
-//     cardList.addItem(cardElement);
-//     addCard.closePopup();
-//     addCardValidator.toggleButtonError(); 
-//     }
-//   });
+const cardList = new Section ({
+  renderer: (item) => {
+  const cardElement = createCard(item);
+  cardList.addItem(cardElement);
+  }
+}, '.elements');
 
 const addCard = new PopupWithForm({
   popupSelector: '.card-popup',
   handleFormSubmit: (formData) => {
+    addCard.rendererLoading(true)
     api.addCard(formData.name, formData.link)
-    .then(() => {
-        const cardElement = createCard(formData);
-        cardList.addItem(cardElement);
-        
+    .then(card => {
+        const cardElement = createCard(card);
+        cardList.addItem(cardElement); 
     })
-    .catch (err => console.log(err));
-    
+    .catch (err => console.log(err))
+    .finally(() => {
+      addCard.rendererLoading(false);
+    });
     addCard.closePopup();
     addCardValidator.toggleButtonError();
-   
     }
-
   });
-
 addCard.setEventListeners();
 
 Promise.all([api.getUserData(), api.getCards()])
-.then(([data, cards]) => {
+.then(([data, items]) => {
   userInfo.setUserInfo(data);
-  const cardList = new Section ({items: cards, renderer: (item) => {
-    const cardElement = createCard(item);
-    cardList.addItem(cardElement);
-    }
-  }, '.elements');
-  cardList.renderItems();
+  cardList.renderItems(items.reverse());
   })
 .catch (err => console.log(err));
 
 
 const userInfo = new UserInfo ({
   nameSelector: '.profile__title',
-  specialtySelector: '.profile__subtitle'
+  specialtySelector: '.profile__subtitle',
+  profileAvatar: '.profile__image'
 })
 
 editBtn.addEventListener ('click', () => {
@@ -156,14 +175,7 @@ editBtn.addEventListener ('click', () => {
   specialtyInput.value = aboutUser.specialty 
 });
 
-// const editProfile = new PopupWithForm ({
-//   popupSelector: '.profile-popup',
-//   handleFormSubmit: ({ name, specialty }) => {
-//   userInfo.setUserInfo ({ name, specialty });
-//   editProfile.closePopup(); 
-//   } 
-    
-// })
+
 const editProfile = new PopupWithForm({
   popupSelector: '.profile-popup',
   handleFormSubmit:(data) => {
@@ -179,14 +191,29 @@ const editProfile = new PopupWithForm({
 })
 editProfile.setEventListeners();
 
-const popupWithConfirm = new PopupWithConfirm({
-  popupSelector:'.confirm-popup'
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: '.avatar-popup',
+  handleFormSubmit:() => {
+    popupEditAvatar.rendererLoading(true);
+    // console.log(`url('${profileAvatarInput.value}')`);
+    console.log(`'input'${profileAvatarInput.value}`)
+    api.editUserAvatar(profileAvatarInput.value)
+    
+    .then((res) => {
+      // console.log(`'result'${res}`)
+      userInfo.setUserInfo(res);
+      popupEditAvatar.closePopup();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      popupEditAvatar.rendererLoading(false);
+    })
+  }
+})
+popupEditAvatar.setEventListeners();
 
-});
-
-console.log(popupWithConfirm);
-
-
-// deleteBtn.addEventListener('click', () => {
-//   popupWithConfirm.openPopup();
-// });
+editAvatarButton.addEventListener('click', () => {
+  popupEditAvatar.openPopup();
+})

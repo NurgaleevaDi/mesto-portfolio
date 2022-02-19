@@ -4,25 +4,23 @@
 // Свойство renderer — это функция, которая отвечает за создание и отрисовку данных на странице
 // Второй параметр конструктора — селектор контейнера, в который нужно добавлять созданные элементы
 class Section {
-    constructor({items, renderer}, containerSelector) {
-        this._renderedItems = items;
+    constructor({renderer}, containerSelector) {
+        // this._renderedItems = items;
         this._container = document.querySelector(containerSelector);
         this._renderer = renderer;
       }
       
       addItem(element) {
-        this._container.append(element);
+        this._container.prepend(element);
       }
     
       clear() {
         this._container.innerHTML = '';
       }
     
-      renderItems() {
-        this.clear();
-        this._renderedItems.forEach(item => {
-          this._renderer(item);
-        });
+      renderItems(items) {
+        // this.clear();
+        items.forEach(item => this._renderer(item));
       }
     }; 
 export default Section;
